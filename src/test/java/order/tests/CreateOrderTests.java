@@ -1,8 +1,8 @@
-package Order.tests;
+package order.tests;
 
-import Order.models.CreateOrder;
-import Order.models.OrderGeneration;
-import Order.steps.OrderSteps;
+import order.models.CreateOrder;
+import order.models.OrderGeneration;
+import order.steps.OrderSteps;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,7 +32,7 @@ public class CreateOrderTests {
     @DisplayName("Создание заказа")
     public void CreateOrderTests() {
         CreateOrder createOrder = generation.newOrder(color);
-        orderSteps.CreateOrder(createOrder)
+        orderSteps.createOrder(createOrder)
                 .log().all()
                 .statusCode(201)
                 .body("track", notNullValue());

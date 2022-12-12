@@ -1,4 +1,4 @@
-package Order.models;
+package order.models;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;

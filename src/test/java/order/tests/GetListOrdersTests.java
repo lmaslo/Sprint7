@@ -1,6 +1,6 @@
-package Order.tests;
+package order.tests;
 
-import Order.steps.OrderSteps;
+import order.steps.OrderSteps;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.Test;
@@ -16,7 +16,7 @@ public class GetListOrdersTests {
     @Description("Проверка кода ответа и что в ответе возвращается список заказов")
     public void GetOrderListTests() {
 
-        orderSteps.GetOrderList()
+        orderSteps.getOrderList()
                 .log().all()
                 .statusCode(200)
                 .body("orders", notNullValue());

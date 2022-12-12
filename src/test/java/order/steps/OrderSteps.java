@@ -1,6 +1,7 @@
-package Order.steps;
+package order.steps;
 
-import Order.models.CreateOrder;
+import io.qameta.allure.Step;
+import order.models.CreateOrder;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 
@@ -10,7 +11,8 @@ public class OrderSteps {
     public final String BASE_URI = "http://qa-scooter.praktikum-services.ru";
     public final String ROOT = "/api/v1/orders";
 
-    public ValidatableResponse GetOrderList() {
+
+    public ValidatableResponse getOrderList() {
         return given()
                 .contentType(ContentType.JSON)
                 .baseUri(BASE_URI)
@@ -19,7 +21,8 @@ public class OrderSteps {
                 .then();
     }
 
-    public ValidatableResponse CreateOrder(CreateOrder order) {
+
+    public ValidatableResponse createOrder(CreateOrder order) {
         return given()
                 .contentType(ContentType.JSON)
                 .baseUri(BASE_URI)

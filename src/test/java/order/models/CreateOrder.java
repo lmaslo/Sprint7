@@ -1,4 +1,4 @@
-package Order.models;
+package order.models;
 
 public class CreateOrder {
     private String firstName;

@@ -1,9 +1,9 @@
-package Courier.tests;
+package courier.tests;
 
-import Courier.models.Courier;
-import Courier.models.CourierGeneration;
-import Courier.models.CreateCourier;
-import Courier.steps.UserSteps;
+import courier.models.Courier;
+import courier.models.CourierGeneration;
+import courier.models.CreateCourier;
+import courier.steps.UserSteps;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
@@ -20,7 +20,7 @@ public class CreateCourierTests {
     @After
     public void deleteCourier(){
         if (courierId >0){
-            step.DeleteUser(courierId);
+            step.deleteUser(courierId);
         }
     }
 
@@ -32,12 +32,12 @@ public class CreateCourierTests {
         CreateCourier createCourier = generation.newCourier();
         Courier courierCredentials = new Courier(createCourier.getLogin(), createCourier.getPassword());
 
-        step.CreateCourier(createCourier)
+        step.createCourier(createCourier)
                 .log().all()
                 .statusCode(201)
                 .body("ok", equalTo(true));
 
-        courierId = step.LoginUserGetID(courierCredentials);
+        courierId = step.loginUserGetID(courierCredentials);
 
     }
 
@@ -50,14 +50,14 @@ public class CreateCourierTests {
 
         CreateCourier createCourier = generation.newCourier();
         Courier courierCredentials = new Courier(createCourier.getLogin(), createCourier.getPassword());
-        step.CreateCourier(createCourier);
+        step.createCourier(createCourier);
 
-        step.CreateCourier(createCourier)
+        step.createCourier(createCourier)
                 .log().all()
                 .statusCode(409)
                 .body("message", equalTo("Этот логин уже используется. Попробуйте другой."));
 
-        courierId = step.LoginUserGetID(courierCredentials);
+        courierId = step.loginUserGetID(courierCredentials);
 
     }
 
@@ -69,7 +69,7 @@ public class CreateCourierTests {
         CreateCourier createCourier = generation.newCourier();
         createCourier.setPassword(null);
 
-        step.CreateCourier(createCourier)
+        step.createCourier(createCourier)
                 .log().all()
                 .statusCode(400)
                 .body("message", equalTo("Недостаточно данных для создания учетной записи"));
@@ -83,7 +83,7 @@ public class CreateCourierTests {
         CreateCourier createCourier = generation.newCourier();
         createCourier.setLogin(null);
 
-        step.CreateCourier(createCourier)
+        step.createCourier(createCourier)
                 .log().all()
                 .statusCode(400)
                 .body("message", equalTo("Недостаточно данных для создания учетной записи"));

@@ -1,9 +1,9 @@
-package Courier.tests;
+package courier.tests;
 
-import Courier.models.Courier;
-import Courier.models.CourierGeneration;
-import Courier.models.CreateCourier;
-import Courier.steps.UserSteps;
+import courier.models.Courier;
+import courier.models.CourierGeneration;
+import courier.models.CreateCourier;
+import courier.steps.UserSteps;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
@@ -22,7 +22,7 @@ public class LoginCourierTests {
     @After
     public void deleteCourier() {
         if (courierId > 0) {
-            step.DeleteUser(courierId);
+            step.deleteUser(courierId);
         }
     }
 
@@ -33,14 +33,14 @@ public class LoginCourierTests {
         CreateCourier createCourier = generation.newCourier();
         Courier courierCredentials = new Courier(createCourier.getLogin(), createCourier.getPassword());
 
-        step.CreateCourier(createCourier);
+        step.createCourier(createCourier);
 
-        step.LoginUser(courierCredentials)
+        step.loginUser(courierCredentials)
                 .log().all()
                 .statusCode(200)
                 .body("id", notNullValue());
 
-        courierId = step.LoginUserGetID(courierCredentials);
+        courierId = step.loginUserGetID(courierCredentials);
     }
 
 
@@ -50,15 +50,15 @@ public class LoginCourierTests {
         CreateCourier createCourier = generation.newCourier();
         Courier courierCredentials = new Courier(null, createCourier.getPassword());
 
-        step.CreateCourier(createCourier);
+        step.createCourier(createCourier);
 
-        step.LoginUser(courierCredentials)
+        step.loginUser(courierCredentials)
                 .log().all()
                 .statusCode(400)
                 .body("message", equalTo("Недостаточно данных для входа"));
 
         courierCredentials.setLogin(createCourier.getLogin());
-        courierId = step.LoginUserGetID(courierCredentials);
+        courierId = step.loginUserGetID(courierCredentials);
 
     }
 
@@ -68,15 +68,15 @@ public class LoginCourierTests {
         CreateCourier createCourier = generation.newCourier();
         Courier courierCredentials = new Courier(createCourier.getLogin(), null);
 
-        step.CreateCourier(createCourier);
+        step.createCourier(createCourier);
 
-        step.LoginUser(courierCredentials)
+        step.loginUser(courierCredentials)
                 .log().all()
                 .statusCode(400)
                 .body("message", equalTo("Недостаточно данных для входа"));
 
         courierCredentials.setPassword(createCourier.getPassword());
-        courierId = step.LoginUserGetID(courierCredentials);
+        courierId = step.loginUserGetID(courierCredentials);
     }
 
     @Test
@@ -85,7 +85,7 @@ public class LoginCourierTests {
         CreateCourier createCourier = generation.newCourier();
         Courier courierCredentials = new Courier(createCourier.getLogin(), createCourier.getPassword());
 
-        step.LoginUser(courierCredentials)
+        step.loginUser(courierCredentials)
                 .log().all()
                 .statusCode(404)
                 .body("message", equalTo("Учетная запись не найдена"));
@@ -96,16 +96,16 @@ public class LoginCourierTests {
     public void LoginWithIncorrectPassword() {
         CreateCourier createCourier = generation.newCourier();
         Courier courierCredentials = new Courier(createCourier.getLogin(), createCourier.getIncorrectPassword());
-        step.CreateCourier(createCourier);
+        step.createCourier(createCourier);
 
-        step.LoginUser(courierCredentials)
+        step.loginUser(courierCredentials)
                 .log().all()
                 .statusCode(404)
                 .body("message", equalTo("Учетная запись не найдена"));
 
 
         courierCredentials.setPassword(createCourier.getPassword());
-        courierId = step.LoginUserGetID(courierCredentials);
+        courierId = step.loginUserGetID(courierCredentials);
     }
 
 }

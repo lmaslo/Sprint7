@@ -1,7 +1,7 @@
-package Courier.steps;
+package courier.steps;
 
-import Courier.models.Courier;
-import Courier.models.CreateCourier;
+import courier.models.Courier;
+import courier.models.CreateCourier;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 
@@ -13,7 +13,7 @@ public class UserSteps {
     public final String ROOT = "/api/v1/courier";
 
 
-    public ValidatableResponse CreateCourier(CreateCourier user) {
+    public ValidatableResponse createCourier(CreateCourier user) {
         return given()
                 .contentType(ContentType.JSON)
                 .baseUri(BASE_URI)
@@ -23,7 +23,7 @@ public class UserSteps {
                 .then();
     }
 
-    public ValidatableResponse LoginUser(Courier user) {
+    public ValidatableResponse loginUser(Courier user) {
         return given()
                 .contentType(ContentType.JSON)
                 .baseUri(BASE_URI)
@@ -33,11 +33,11 @@ public class UserSteps {
                 .then();
     }
 
-    public int LoginUserGetID(Courier user) {
-        return LoginUser(user).extract().path("id");
+    public int loginUserGetID(Courier user) {
+        return loginUser(user).extract().path("id");
     }
 
-    public void DeleteUser(int id) {
+    public void deleteUser(int id) {
         given()
                 .contentType(ContentType.JSON)
                 .baseUri(BASE_URI)
