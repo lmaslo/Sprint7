@@ -9,6 +9,7 @@ import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Test;
 
+import static org.apache.http.HttpStatus.*;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
@@ -37,7 +38,7 @@ public class LoginCourierTests {
 
         step.loginUser(courierCredentials)
                 .log().all()
-                .statusCode(200)
+                .statusCode(SC_OK)
                 .body("id", notNullValue());
 
         courierId = step.loginUserGetID(courierCredentials);
@@ -54,7 +55,7 @@ public class LoginCourierTests {
 
         step.loginUser(courierCredentials)
                 .log().all()
-                .statusCode(400)
+                .statusCode(SC_BAD_REQUEST)
                 .body("message", equalTo("Недостаточно данных для входа"));
 
         courierCredentials.setLogin(createCourier.getLogin());
@@ -72,7 +73,7 @@ public class LoginCourierTests {
 
         step.loginUser(courierCredentials)
                 .log().all()
-                .statusCode(400)
+                .statusCode(SC_BAD_REQUEST)
                 .body("message", equalTo("Недостаточно данных для входа"));
 
         courierCredentials.setPassword(createCourier.getPassword());
@@ -87,7 +88,7 @@ public class LoginCourierTests {
 
         step.loginUser(courierCredentials)
                 .log().all()
-                .statusCode(404)
+                .statusCode(SC_NOT_FOUND)
                 .body("message", equalTo("Учетная запись не найдена"));
     }
 
@@ -100,7 +101,7 @@ public class LoginCourierTests {
 
         step.loginUser(courierCredentials)
                 .log().all()
-                .statusCode(404)
+                .statusCode(SC_NOT_FOUND)
                 .body("message", equalTo("Учетная запись не найдена"));
 
 

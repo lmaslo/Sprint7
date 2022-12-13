@@ -9,6 +9,7 @@ import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Test;
 
+import static org.apache.http.HttpStatus.*;
 import static org.hamcrest.Matchers.equalTo;
 
 public class CreateCourierTests {
@@ -34,7 +35,7 @@ public class CreateCourierTests {
 
         step.createCourier(createCourier)
                 .log().all()
-                .statusCode(201)
+                .statusCode(SC_CREATED)
                 .body("ok", equalTo(true));
 
         courierId = step.loginUserGetID(courierCredentials);
@@ -54,7 +55,7 @@ public class CreateCourierTests {
 
         step.createCourier(createCourier)
                 .log().all()
-                .statusCode(409)
+                .statusCode(SC_CONFLICT)
                 .body("message", equalTo("Этот логин уже используется. Попробуйте другой."));
 
         courierId = step.loginUserGetID(courierCredentials);
@@ -71,7 +72,7 @@ public class CreateCourierTests {
 
         step.createCourier(createCourier)
                 .log().all()
-                .statusCode(400)
+                .statusCode(SC_BAD_REQUEST)
                 .body("message", equalTo("Недостаточно данных для создания учетной записи"));
 
     }
@@ -85,7 +86,7 @@ public class CreateCourierTests {
 
         step.createCourier(createCourier)
                 .log().all()
-                .statusCode(400)
+                .statusCode(SC_BAD_REQUEST)
                 .body("message", equalTo("Недостаточно данных для создания учетной записи"));
 
     }

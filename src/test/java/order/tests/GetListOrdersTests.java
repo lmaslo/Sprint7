@@ -4,7 +4,7 @@ import order.steps.OrderSteps;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.Test;
-
+import static org.apache.http.HttpStatus.*;
 import static org.hamcrest.Matchers.notNullValue;
 
 public class GetListOrdersTests {
@@ -18,7 +18,7 @@ public class GetListOrdersTests {
 
         orderSteps.getOrderList()
                 .log().all()
-                .statusCode(200)
+                .statusCode(SC_OK)
                 .body("orders", notNullValue());
     }
 }
