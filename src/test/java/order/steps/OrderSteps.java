@@ -12,6 +12,7 @@ public class OrderSteps {
     public final String ROOT = "/api/v1/orders";
 
 
+    @Step ("Get order list")
     public ValidatableResponse getOrderList() {
         return given()
                 .contentType(ContentType.JSON)
@@ -22,6 +23,7 @@ public class OrderSteps {
     }
 
 
+    @Step ("Create order")
     public ValidatableResponse createOrder(CreateOrder order) {
         return given()
                 .contentType(ContentType.JSON)
