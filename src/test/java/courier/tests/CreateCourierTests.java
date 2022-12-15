@@ -29,7 +29,7 @@ public class CreateCourierTests {
     @Test
     @DisplayName("Создание Курьера - позитивный тест")
     @Description("Проверка успешного создания курьера, после теста данные с id удаляются")
-    public void CreateUserTests() {
+    public void createUserTests() {
         CreateCourier createCourier = generation.newCourier();
         Courier courierCredentials = new Courier(createCourier.getLogin(), createCourier.getPassword());
 
@@ -47,7 +47,7 @@ public class CreateCourierTests {
     @Test
     @DisplayName("Попытка создать дубликат курьера")
     @Description("Проверка, что в ответе возвращается ошибка при попытке создать курьера с дубилатом login")
-    public void CreateDuplicateUserTests() {
+    public void createDuplicateUserTests() {
 
         CreateCourier createCourier = generation.newCourier();
         Courier courierCredentials = new Courier(createCourier.getLogin(), createCourier.getPassword());
@@ -66,7 +66,7 @@ public class CreateCourierTests {
     @Test
     @DisplayName("Создание Курьера - без поля password")
     @Description("Проверка, что возвращается ошибка, если при создании курьера не заполнен пароль")
-    public void CreateUserWithoutPasswordTests() {
+    public void createUserWithoutPasswordTests() {
         CreateCourier createCourier = generation.newCourier();
         createCourier.setPassword(null);
 
@@ -80,7 +80,7 @@ public class CreateCourierTests {
     @Test
     @DisplayName("Создание Курьера - без поля login")
     @Description("Проверка, что возвращается ошибка, если при создании курьера не заполнен login")
-    public void CreateUserWithoutLoginTests() {
+    public void createUserWithoutLoginTests() {
         CreateCourier createCourier = generation.newCourier();
         createCourier.setLogin(null);
 

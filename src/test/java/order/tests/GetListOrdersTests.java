@@ -14,7 +14,7 @@ public class GetListOrdersTests {
     @Test
     @DisplayName("Запрос список заказов")
     @Description("Проверка кода ответа и что в ответе возвращается список заказов")
-    public void GetOrderListTests() {
+    public void getOrderListTests() {
 
         orderSteps.getOrderList()
                 .log().all()

@@ -31,7 +31,7 @@ public class CreateOrderTests {
 
     @Test
     @DisplayName("Создание заказа")
-    public void CreateOrderTests() {
+    public void createOrderTests() {
         CreateOrder createOrder = generation.newOrder(color);
         orderSteps.createOrder(createOrder)
                 .log().all()

@@ -30,7 +30,7 @@ public class LoginCourierTests {
     @Test
     @DisplayName("Авторизация курьера - позитивный тест")
     @Description("Проверка успешного авторизации курьера")
-    public void LoginSuccess() {
+    public void loginSuccess() {
         CreateCourier createCourier = generation.newCourier();
         Courier courierCredentials = new Courier(createCourier.getLogin(), createCourier.getPassword());
 
@@ -47,7 +47,7 @@ public class LoginCourierTests {
 
     @Test
     @DisplayName("Авторизация курьера - без поля login")
-    public void LoginWithOutLogin() {
+    public void loginWithOutLogin() {
         CreateCourier createCourier = generation.newCourier();
         Courier courierCredentials = new Courier(null, createCourier.getPassword());
 
@@ -65,7 +65,7 @@ public class LoginCourierTests {
 
     @Test
     @DisplayName("Авторизация курьера - без поля password")
-    public void LoginWithOutPassword() {
+    public void loginWithOutPassword() {
         CreateCourier createCourier = generation.newCourier();
         Courier courierCredentials = new Courier(createCourier.getLogin(), null);
 
@@ -82,7 +82,7 @@ public class LoginCourierTests {
 
     @Test
     @DisplayName("Авторизация курьера - Не существующий логин")
-    public void LoginWithUnknownLogin() {
+    public void loginWithUnknownLogin() {
         CreateCourier createCourier = generation.newCourier();
         Courier courierCredentials = new Courier(createCourier.getLogin(), createCourier.getPassword());
 
@@ -94,7 +94,7 @@ public class LoginCourierTests {
 
     @Test
     @DisplayName("Авторизация курьера - Не корректный пароль ")
-    public void LoginWithIncorrectPassword() {
+    public void loginWithIncorrectPassword() {
         CreateCourier createCourier = generation.newCourier();
         Courier courierCredentials = new Courier(createCourier.getLogin(), createCourier.getIncorrectPassword());
         step.createCourier(createCourier);
